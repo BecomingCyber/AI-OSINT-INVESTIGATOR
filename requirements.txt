@@ -1,0 +1,7 @@
+Flask
+python-dotenv
+requests
+openai
+dnspython
+python-whois
+reportlab==5.0.1

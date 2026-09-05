@@ -1,0 +1,40 @@
+# ==========================================
+# AI OSINT Investigator
+# ==========================================
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment variables / API keys
+.env
+.env.*
+!.env.example
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated investigation reports
+reports/*.pdf
+
+# IDE files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp

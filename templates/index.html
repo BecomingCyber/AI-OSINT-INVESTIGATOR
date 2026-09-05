@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>AI OSINT Investigator</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>AI OSINT Investigator</h1>
+        <p>Evidence-first, AI-assisted open-source intelligence analysis.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="investigation-card">
+        <h2>Start an Investigation</h2>
+
+        <p class="description">
+          Enter a domain to collect publicly available OSINT evidence and
+          generate an AI-assisted investigation summary.
+        </p>
+
+        <form method="POST" action="/investigate">
+          <label for="domain"> Target Domain </label>
+
+          <input
+            type="text"
+            id="domain"
+            name="domain"
+            placeholder="example.com"
+            required
+          />
+
+          <button type="submit">Start Investigation</button>
+        </form>
+
+        <p class="authorization-note">
+          Use only domains you own, are authorized to investigate, or are
+          appropriate for passive public-source research.
+        </p>
+      </section>
+
+      <section class="workflow">
+        <h2>Investigation Workflow</h2>
+
+        <div class="workflow-grid">
+          <div class="workflow-item">
+            <span>1</span>
+            <h3>Collect</h3>
+            <p>
+              Gather DNS, WHOIS, IP, subdomain, and web technology evidence.
+            </p>
+          </div>
+
+          <div class="workflow-item">
+            <span>2</span>
+            <h3>Structure</h3>
+            <p>Normalize findings into structured investigation data.</p>
+          </div>
+
+          <div class="workflow-item">
+            <span>3</span>
+            <h3>Analyze</h3>
+            <p>
+              Use AI to identify relationships, observations, and investigative
+              leads.
+            </p>
+          </div>
+
+          <div class="workflow-item">
+            <span>4</span>
+            <h3>Validate</h3>
+            <p>
+              Keep facts, assumptions, and analyst conclusions clearly
+              separated.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

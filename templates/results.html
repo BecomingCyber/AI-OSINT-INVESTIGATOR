@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Investigation {{ investigation_id }} | AI OSINT Investigator</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="header-row">
+          <div>
+            <h1>AI OSINT Investigator</h1>
+
+            <p>
+              Evidence-first, AI-assisted open-source intelligence analysis.
+            </p>
+          </div>
+
+          <nav class="site-nav">
+            <a href="{{ url_for('home') }}"> New Investigation </a>
+
+            <a href="{{ url_for('history') }}"> History </a>
+
+            <a
+              href="{{ url_for(
+                'generate_report',
+                investigation_id=investigation_id
+              ) }}"
+            >
+              Generate PDF Report
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="results-header">
+        <div>
+          <p class="eyebrow">INVESTIGATION #{{ investigation_id }}</p>
+
+          <h2>{{ target }}</h2>
+        </div>
+      </div>
+
+      <section class="result-card">
+        <h2>Investigation Status</h2>
+
+        {% if analysis.status == "success" %}
+
+        <div class="status-success">Analysis completed successfully</div>
+
+        {% else %}
+
+        <div class="status-error">Analysis error</div>
+
+        <p>{{ analysis.error }}</p>
+
+        {% endif %}
+      </section>
+
+      <section class="result-card">
+        <h2>DNS Evidence</h2>
+
+        <div class="evidence-grid">
+          {% for record_type, records in osint.dns.items() %}
+
+          <div class="evidence-item">
+            <h3>{{ record_type }}</h3>
+
+            {% if records %}
+
+            <ul>
+              {% for record in records %}
+              <li>{{ record }}</li>
+              {% endfor %}
+            </ul>
+
+            {% else %}
+
+            <p>Not observed</p>
+
+            {% endif %}
+          </div>
+
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="result-card">
+        <h2>WHOIS Evidence</h2>
+
+        <div class="evidence-table">
+          {% for key, value in osint.whois.items() %}
+
+          <div class="evidence-row">
+            <strong> {{ key.replace("_", " ").title() }} </strong>
+
+            <span>{{ value }}</span>
+          </div>
+
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="result-card">
+        <h2>IP Information</h2>
+
+        <div class="evidence-table">
+          {% for key, value in osint.ip_information.items() %}
+
+          <div class="evidence-row">
+            <strong> {{ key.replace("_", " ").title() }} </strong>
+
+            <span> {{ value if value is not none else "Not observed" }} </span>
+          </div>
+
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="result-card">
+        <h2>Discovered Subdomains</h2>
+
+        {% if osint.subdomains is mapping %}
+
+        <p>{{ osint.subdomains.error }}</p>
+
+        {% elif osint.subdomains %}
+
+        <div class="tag-list">
+          {% for subdomain in osint.subdomains %}
+
+          <span class="tag"> {{ subdomain }} </span>
+
+          {% endfor %}
+        </div>
+
+        {% else %}
+
+        <p>No subdomains observed.</p>
+
+        {% endif %}
+      </section>
+
+      <section class="result-card">
+        <h2>Web Technology Evidence</h2>
+
+        {% if osint.technology.error is defined %}
+
+        <p>{{ osint.technology.error }}</p>
+
+        {% else %}
+
+        <div class="evidence-table">
+          <div class="evidence-row">
+            <strong>Status Code</strong>
+            <span>{{ osint.technology.status_code }}</span>
+          </div>
+
+          <div class="evidence-row">
+            <strong>Final URL</strong>
+            <span>{{ osint.technology.final_url }}</span>
+          </div>
+
+          <div class="evidence-row">
+            <strong>Server</strong>
+            <span>
+              {{ osint.technology.server if osint.technology.server else "Not
+              observed" }}
+            </span>
+          </div>
+
+          <div class="evidence-row">
+            <strong>X-Powered-By</strong>
+            <span>
+              {{ osint.technology.powered_by if osint.technology.powered_by else
+              "Not observed" }}
+            </span>
+          </div>
+
+          <div class="evidence-row">
+            <strong>Content Type</strong>
+            <span>{{ osint.technology.content_type }}</span>
+          </div>
+        </div>
+
+        <h3>Security Headers</h3>
+
+        <div class="evidence-table">
+          {% for header, value in osint.technology.security_headers.items() %}
+
+          <div class="evidence-row">
+            <strong>{{ header }}</strong>
+
+            <span> {{ value if value else "Not observed" }} </span>
+          </div>
+
+          {% endfor %}
+        </div>
+
+        <h3>Technology Indicators</h3>
+
+        <ul>
+          {% for indicator in osint.technology.technology_indicators %}
+
+          <li>{{ indicator }}</li>
+
+          {% endfor %}
+        </ul>
+
+        {% endif %}
+      </section>
+
+      <section class="result-card ai-card">
+        <h2>AI-Assisted Analysis</h2>
+
+        <p class="analysis-warning">
+          AI-generated analysis should be validated against the collected
+          evidence before drawing investigative conclusions.
+        </p>
+
+        {% if analysis.status == "success" %}
+
+        <pre class="analysis-output">{{ analysis.analysis }}</pre>
+
+        {% else %}
+
+        <p>AI analysis was unavailable for this investigation.</p>
+
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>

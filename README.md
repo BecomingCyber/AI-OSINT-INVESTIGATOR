@@ -14,6 +14,55 @@ An evidence-first, AI-assisted open-source intelligence application that collect
 
 ---
 
+## 💼 Portfolio Case Study
+
+### The Problem
+
+OSINT investigations can require analysts to collect information from multiple public sources, correlate the results, distinguish evidence from assumptions, and document findings in a repeatable way. Performing these steps manually can make investigations difficult to organize and reproduce.
+
+### What I Built
+
+I built **AI OSINT Investigator**, a Python and Flask application that automates the collection and organization of publicly available domain intelligence.
+
+The application collects:
+
+- DNS records
+- WHOIS registration information
+- IP and network information
+- Passive Certificate Transparency data
+- Web technology indicators
+- HTTP security headers
+
+The collected evidence is normalized into structured investigation data and stored in SQLite.
+
+An AI analysis component reviews the structured evidence and assists with identifying relationships, observations, potential risks, unknowns, and recommended investigative steps.
+
+### My Approach
+
+I designed the investigation workflow around five stages:
+
+**Collect → Structure → Analyze → Validate → Report**
+
+AI is treated as an **analytical assistant, not an evidence source**. Generated conclusions must remain tied to collected evidence and require human validation.
+
+### Key Security Decisions
+
+- Used passive OSINT techniques rather than intrusive scanning
+- Kept API credentials outside source code using environment variables
+- Excluded secrets and local investigation data through `.gitignore`
+- Required evidence-based AI analysis
+- Distinguished observed facts from assumptions and potential risks
+- Added GitHub Actions CI to automatically validate the Python application
+- Used version control and documented releases for reproducibility
+
+### Outcome
+
+The completed application provides a repeatable workflow for collecting public technical intelligence, organizing investigation evidence, performing AI-assisted analysis, preserving investigation history, and generating reports.
+
+The project demonstrates how automation and AI can support cybersecurity investigations while maintaining an evidence-first analytical process.
+
+---
+
 ## 🧠 Skills Demonstrated
 
 This project demonstrates hands-on experience with:

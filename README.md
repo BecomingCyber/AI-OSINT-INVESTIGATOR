@@ -2,12 +2,11 @@
 
 [![Python CI](https://github.com/BecomingCyber/AI-OSINT-INVESTIGATOR/actions/workflows/python-ci.yml/badge.svg)](https://github.com/BecomingCyber/AI-OSINT-INVESTIGATOR/actions/workflows/python-ci.yml)
 
-An evidence-first, AI-assisted open-source intelligence application that
-collects publicly available information about a domain, structures the
-evidence, uses AI to assist with analysis, stores investigation results, and
-generates investigation reports.
+An evidence-first, AI-assisted open-source intelligence application that collects publicly available information about a domain, structures the evidence, uses AI to assist with analysis, stores investigation results, and generates investigation reports.
 
 > **Workflow:** Collect → Structure → Analyze → Validate → Report
+
+---
 
 ## 🖥️ Application Preview
 
@@ -15,11 +14,33 @@ generates investigation reports.
 
 ---
 
+## 🧠 Skills Demonstrated
+
+This project demonstrates hands-on experience with:
+
+- Python automation and modular application development
+- Open-Source Intelligence (OSINT) collection
+- DNS record analysis
+- WHOIS analysis
+- IP and network infrastructure research
+- Passive Certificate Transparency analysis
+- HTTP response and security-header analysis
+- AI-assisted intelligence analysis
+- Evidence validation and analytical reasoning
+- Flask web application development
+- SQLite database persistence
+- PDF investigation reporting
+- Git and GitHub version control
+- GitHub Actions continuous integration
+- API-key and secret management
+
+---
+
 ## 📌 Project Overview
 
-The AI OSINT Investigator was built as a hands-on cybersecurity portfolio project to demonstrate how open-source intelligence collection can be combined with AI-assisted analysis without treating AI-generated conclusions as evidence.
+AI OSINT Investigator is a cybersecurity portfolio project designed to demonstrate how publicly available technical information can be collected, structured, analyzed, validated, stored, and reported as part of an investigation.
 
-The application accepts a target domain and collects several categories of publicly available information, including:
+The application accepts a target domain and gathers multiple categories of OSINT, including:
 
 - DNS records
 - WHOIS information
@@ -28,9 +49,9 @@ The application accepts a target domain and collects several categories of publi
 - Web technology indicators
 - HTTP security headers
 
-The collected evidence is normalized into structured investigation data before being provided to an AI analysis component.
+Collected evidence is normalized into structured investigation data before being passed to the AI analysis component.
 
-The AI is instructed to distinguish between:
+The AI is used as an **analytical assistant rather than an evidence source**. It is instructed to distinguish between:
 
 - Observed facts
 - Reasonable inferences
@@ -38,112 +59,112 @@ The AI is instructed to distinguish between:
 - Potential risks
 - Recommended investigative steps
 
-Investigation results are stored in a local SQLite database and can be reviewed through a Flask web interface.
+The analyst remains responsible for validating conclusions.
 
 ---
 
 ## 🎯 Project Goals
 
-This project demonstrates practical experience with:
+The project was built to practice and demonstrate the ability to:
 
-- Open-source intelligence collection
-- Python automation
-- DNS investigation
-- WHOIS analysis
-- IP attribution
-- Passive subdomain discovery
-- HTTP response analysis
-- Security header analysis
-- API integration
-- AI-assisted cybersecurity analysis
-- Prompt design
-- Evidence validation
-- SQLite databases
-- Flask web development
-- PDF report generation
-- Secure API-key management
-- Git and GitHub documentation
+- Automate repeatable OSINT collection
+- Normalize information from multiple public sources
+- Correlate domain, DNS, IP, WHOIS, and web evidence
+- Integrate AI without treating generated conclusions as facts
+- Preserve investigation results for later review
+- Present technical findings through a web interface
+- Generate investigation reports
+- Apply secure API-key management
+- Use Git for source control
+- Validate application changes through continuous integration
 
 ---
 
 ## 🏗️ Architecture
 
 ```text
-                    ┌─────────────────────┐
-                    │    Target Domain    │
-                    └──────────┬──────────┘
+                    ┌──────────────────────┐
+                    │     Target Domain    │
+                    └──────────┬───────────┘
                                │
                                ▼
-                    ┌─────────────────────┐
-                    │  OSINT Collection   │
-                    └──────────┬──────────┘
+                    ┌──────────────────────┐
+                    │   OSINT Collectors   │
+                    └──────────┬───────────┘
                                │
-              ┌────────────────┼────────────────┐
-              │                │                │
-              ▼                ▼                ▼
-            DNS              WHOIS             IP
-              │                │                │
-              └────────┬───────┴───────┬────────┘
-                       │               │
-                       ▼               ▼
-                  Subdomains      Web Technology
-                       │               │
-                       └───────┬───────┘
+          ┌────────────────────┼────────────────────┐
+          │                    │                    │
+          ▼                    ▼                    ▼
+       DNS/WHOIS            IP Data          Subdomains/Web
+          │                    │                    │
+          └────────────────────┼────────────────────┘
                                │
                                ▼
-                    ┌─────────────────────┐
-                    │ Structured Evidence │
-                    └──────────┬──────────┘
+                    ┌──────────────────────┐
+                    │ Structured Evidence  │
+                    └──────────┬───────────┘
                                │
                                ▼
-                    ┌─────────────────────┐
-                    │ AI-Assisted Analysis│
-                    └──────────┬──────────┘
+                    ┌──────────────────────┐
+                    │ AI-Assisted Analysis │
+                    └──────────┬───────────┘
                                │
                                ▼
-                    ┌─────────────────────┐
-                    │ Human Validation    │
-                    └──────────┬──────────┘
+                    ┌──────────────────────┐
+                    │  Analyst Validation  │
+                    └──────────┬───────────┘
                                │
-                     ┌─────────┴─────────┐
-                     ▼                   ▼
-              SQLite Database       PDF Report
-                     │
-                     ▼
-              Flask Dashboard
+                    ┌──────────┴───────────┐
+                    ▼                      ▼
+             SQLite Database          PDF Report
+                    │
+                    ▼
+             Flask Web Interface
 ```
 
 ---
 
-## 🔄 Investigation Workflow
+## 🔍 Investigation Workflow
 
 ### 1. Collect
 
-The application gathers publicly available evidence associated with the supplied domain.
+The application collects publicly available technical information about the target domain.
 
 ### 2. Structure
 
-Results from multiple collectors are normalized into a single structured investigation dataset.
+Results from the individual collectors are organized into a consistent investigation data structure.
 
 ### 3. Analyze
 
-The structured evidence is submitted to an AI model using an evidence-focused analysis prompt.
+Structured evidence is provided to the AI analysis component.
 
 ### 4. Validate
 
-AI-generated observations are treated as investigative assistance rather than verified facts. Findings should be compared against the collected evidence.
+AI-generated observations are treated as analytical leads that require human review.
 
 ### 5. Report
 
-Investigation data can be stored, retrieved, reviewed through the web interface, and exported into an investigation report.
+Investigation results can be stored in SQLite, viewed through the Flask interface, and incorporated into an investigation report.
+
+```text
+Collect
+   ↓
+Structure
+   ↓
+Analyze
+   ↓
+Validate
+   ↓
+Report
+```
 
 ---
 
-## 🔍 OSINT Collectors
+## 🔎 OSINT Collection
 
-### DNS Collector
+### DNS
 
-Collects common DNS record types:
+The DNS collector retrieves common records such as:
 
 - A
 - AAAA
@@ -151,138 +172,134 @@ Collects common DNS record types:
 - NS
 - TXT
 
-### WHOIS Collector
+These records can provide information about network infrastructure, mail configuration, nameservers, and other domain characteristics.
 
-Collects domain-registration information such as:
+### WHOIS
+
+WHOIS data may provide information such as:
 
 - Registrar
 - Creation date
 - Expiration date
-- Updated date
-- Name servers
+- Update date
+- Nameservers
 - Domain status
 
-### IP Collector
+WHOIS results vary because registration information may be redacted or represented differently by different registries.
 
-Resolves the target domain and collects public IP metadata such as:
+### IP Information
+
+The application resolves the target domain and gathers public information associated with the resolved IP address.
+
+Possible evidence includes:
 
 - IP address
 - Hostname
-- City
+- Network organization
 - Region
 - Country
-- Organization
 - Time zone
 
-IP geolocation is treated as infrastructure metadata and should not be interpreted as proof of an organization's physical location.
+> IP geolocation is treated as approximate infrastructure information and not proof of an organization's physical location.
 
-### Passive Subdomain Collector
+### Passive Subdomain Discovery
 
-Uses publicly available Certificate Transparency information to identify domain and subdomain names.
+Subdomains are collected passively using publicly available Certificate Transparency information.
 
-The collector performs passive discovery rather than brute-force subdomain enumeration.
+The collector validates domain boundaries to prevent unrelated domains from being incorrectly classified as subdomains.
 
-Certificate Transparency observations do not prove that a hostname is currently active.
+For example:
 
-### Web Technology Collector
+```text
+www.example.com       → Valid
+support.example.com   → Valid
+m.testexample.com     → Rejected
+```
 
-Collects publicly observable HTTP information including:
+> Certificate Transparency records indicate that a hostname appeared in certificate data. They do not prove that the hostname is currently active.
 
-- HTTP status
-- Final URL
-- Server header
-- X-Powered-By header
-- Content type
-- Security headers
-- Basic technology indicators
+### Web Technology Evidence
 
-Security headers examined include:
+The application also examines publicly observable web characteristics, including technology indicators and HTTP response information.
 
-- Strict-Transport-Security
-- Content-Security-Policy
-- X-Content-Type-Options
-- X-Frame-Options
-- Referrer-Policy
-- Permissions-Policy
+### HTTP Security Headers
 
-A missing header is recorded as an observation rather than automatically classified as a vulnerability.
+HTTP headers may provide evidence about defensive web configuration.
+
+The application treats missing headers as **observations requiring context**, not automatic proof of a vulnerability.
 
 ---
 
 ## 🤖 AI-Assisted Analysis
 
-Collected OSINT evidence is converted into a structured prompt before being sent to the AI analysis component.
+The AI component receives structured OSINT evidence and is instructed to analyze only the information provided.
 
-The analysis is instructed to:
+The analysis focuses on:
 
-1. Summarize the collected evidence.
-2. Identify relationships between findings.
-3. Highlight observations requiring further investigation.
-4. Identify potential risks only when supported by evidence.
-5. Separate facts from assumptions.
-6. Avoid labeling infrastructure as malicious without supporting evidence.
-7. Recommend reasonable next investigative steps.
+1. Summarizing collected evidence
+2. Identifying relationships between findings
+3. Highlighting observations requiring further investigation
+4. Identifying potential risks when supported by evidence
+5. Distinguishing facts from assumptions
+6. Avoiding unsupported malicious classifications
+7. Recommending reasonable investigative next steps
 
-### Important Principle
+### Human-in-the-Loop Principle
 
-**AI output is not evidence.**
+```text
+Collected Evidence
+        ↓
+AI Analysis
+        ↓
+Potential Findings
+        ↓
+Human Validation
+        ↓
+Investigation Conclusion
+```
 
-The AI functions as an investigative assistant. Analyst validation remains necessary before conclusions are drawn.
-
----
-
-## 🗄️ Investigation Database
-
-Completed investigations are stored in a local SQLite database.
-
-Stored information includes:
-
-- Investigation ID
-- Target
-- Collected OSINT data
-- AI analysis
-- Investigation status
-- Creation timestamp
-
-Saved investigations can later be retrieved without rerunning the original collection process.
-
-The local database is excluded from Git tracking.
+AI output is **not treated as evidence by itself**.
 
 ---
 
-## 🌐 Flask Web Interface
+## ⚙️ Key Technical Decisions
 
-The project includes a Flask-based interface for running and reviewing investigations.
+Several design decisions were made intentionally:
 
-The interface provides:
+### Passive collection over intrusive scanning
 
-- Domain investigation form
-- Investigation status
-- DNS evidence
-- WHOIS evidence
-- IP information
-- Discovered subdomains
-- Web technology evidence
-- AI-assisted analysis
-- Investigation history
-- Saved investigation retrieval
+Certificate Transparency information is used for passive subdomain discovery rather than brute-force enumeration.
+
+### Evidence separated from analysis
+
+Raw collected evidence is preserved separately from AI-generated interpretation so findings can be independently reviewed.
+
+### Structured investigation data
+
+Collector results are normalized into structured data before analysis, storage, or reporting.
+
+### Evidence-grounded AI prompting
+
+The AI is explicitly instructed to separate facts, inferences, unknowns, risks, and investigative recommendations.
+
+### Local investigation persistence
+
+SQLite provides lightweight persistence without requiring an external database service.
+
+### Secret isolation
+
+API credentials are stored in a local `.env` file that is excluded from Git. A `.env.example` file documents required variables without exposing credentials.
 
 ---
 
-## 📄 PDF Reporting
-
-Investigation findings can be converted into a PDF report using ReportLab.
-
-Generated reports are stored locally in the `reports/` directory and are excluded from Git tracking.
-
-This prevents investigation output from accidentally being committed to the public repository.
-
----
-
-## 📁 Project Structure
+## 🗂️ Project Structure
 
 ```text
 AI-OSINT-INVESTIGATOR/
+│
+├── .github/
+│   └── workflows/
+│       └── python-ci.yml
 │
 ├── analyzer/
 │   └── ai_analyzer.py
@@ -300,12 +317,12 @@ AI-OSINT-INVESTIGATOR/
 ├── reporting/
 │   └── pdf_report.py
 │
+├── screenshots/
+│
 ├── scripts/
 │   ├── init_db.py
 │   ├── investigate.py
 │   └── retrieve_investigation.py
-│
-├── screenshots/
 │
 ├── static/
 │   └── style.css
@@ -324,34 +341,57 @@ AI-OSINT-INVESTIGATOR/
 
 ---
 
-## ⚙️ Installation
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Python | Core application and automation |
+| Flask | Web application |
+| SQLite | Investigation persistence |
+| dnspython | DNS collection |
+| python-whois | WHOIS collection |
+| Requests | HTTP/API communication |
+| OpenAI API | AI-assisted analysis |
+| ReportLab | PDF report generation |
+| HTML/CSS | Investigation interface |
+| Git | Version control |
+| GitHub | Repository hosting |
+| GitHub Actions | Continuous integration |
+
+---
+
+## 🚀 Installation
 
 ### 1. Clone the repository
 
-```powershell
-git clone <repository-url>
+```bash
+git clone https://github.com/BecomingCyber/AI-OSINT-INVESTIGATOR.git
 cd AI-OSINT-INVESTIGATOR
 ```
 
 ### 2. Create a virtual environment
 
+Windows:
+
 ```powershell
 python -m venv venv
-```
-
-### 3. Activate the environment
-
-```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### 4. Install dependencies
+Linux/macOS:
 
-```powershell
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 5. Configure environment variables
+### 4. Configure environment variables
 
 Copy:
 
@@ -365,7 +405,9 @@ to:
 .env
 ```
 
-Then add your API credentials locally.
+Then configure the required API credentials.
+
+Example:
 
 ```text
 OPENAI_API_KEY=
@@ -373,21 +415,21 @@ SHODAN_API_KEY=
 VIRUSTOTAL_API_KEY=
 ```
 
-Never commit the `.env` file or API credentials to GitHub.
+> Never commit `.env` or API credentials to source control.
 
-### 6. Initialize the database
+### 5. Initialize the database
 
-```powershell
-python database\database_manager.py
+```bash
+python scripts/init_db.py
 ```
 
-### 7. Start the application
+### 6. Run the Flask application
 
-```powershell
+```bash
 python app.py
 ```
 
-Open the local Flask application in your browser at:
+Open:
 
 ```text
 http://127.0.0.1:5000
@@ -395,54 +437,145 @@ http://127.0.0.1:5000
 
 ---
 
-## 🖼️ Project Demonstration
+## 🖥️ Application Features
 
-### OSINT Collection
+The Flask interface provides:
 
-![Combined OSINT Collection](screenshots/05-combined-osint-collection.png)
-
-### AI-Assisted Analysis
-
-![AI Analysis](screenshots/06-ai-analysis-success.png)
-
-### End-to-End Investigation
-
-![End-to-End Investigation](screenshots/07-end-to-end-investigation.png)
-
-### Technology Evidence
-
-![Technology Evidence](screenshots/08-technology-evidence-integrated.png)
-
-### Investigation Database
-
-![Investigation Saved](screenshots/09-investigation-saved-to-database.png)
-
-### Flask Web Interface
-
-![Flask Web Interface](screenshots/11-flask-web-interface.png)
-
-### Investigation Results
-
-![Investigation Results](screenshots/12-web-investigation-results.png)
-
-### Investigation History
-
-![Investigation History](screenshots/13-investigation-history.png)
+- New domain investigation
+- Structured OSINT results
+- DNS evidence
+- WHOIS evidence
+- IP information
+- Passive subdomain results
+- Technology evidence
+- AI-assisted analysis
+- Investigation status
+- Investigation history
+- Previously stored investigation retrieval
 
 ---
 
-## 🔐 Security Practices
+## 💾 Investigation Persistence
 
-Several safeguards are built into the development workflow:
+Investigation results are stored locally using SQLite.
 
-- API keys are stored in `.env`.
-- `.env` is excluded through `.gitignore`.
-- `.env.example` contains only empty placeholders.
-- Virtual environments are excluded from Git.
-- SQLite investigation databases are excluded from Git.
-- Generated investigation reports are excluded from Git.
-- Secret scanning is performed before repository publication.
-- Passive collection methods are preferred where appropriate.
+This allows investigations to be:
+
+```text
+Run Investigation
+       ↓
+Collect Evidence
+       ↓
+Analyze Evidence
+       ↓
+Save Investigation
+       ↓
+Retrieve Later
+```
+
+Persistence makes it possible to review previous findings rather than treating each investigation as a temporary terminal session.
+
+---
+
+## 📄 Investigation Reporting
+
+The reporting component generates PDF investigation reports from structured investigation results.
+
+The reporting workflow separates:
+
+- Collected evidence
+- AI-assisted observations
+- Investigation metadata
+- Analytical findings
+
+This supports a more realistic cybersecurity investigation workflow where evidence must remain reviewable after analysis.
+
+---
+
+## 🧪 Continuous Integration
+
+This repository uses **GitHub Actions** to automatically validate the project whenever changes are pushed to `main` or submitted through a pull request.
+
+Current CI checks include:
+
+- Dependency installation
+- Python source compilation
+- Flask application import validation
+
+```text
+Code Change
+     ↓
+Git Push
+     ↓
+GitHub Actions
+     ↓
+Install Dependencies
+     ↓
+Compile Python
+     ↓
+Validate Flask Import
+     ↓
+🟢 Pass / 🔴 Fail
+```
+
+The current workflow status is displayed at the top of this README.
+
+---
+
+## 📸 Development Evidence
+
+The `screenshots/` directory documents major development milestones, including:
+
+1. Project setup
+2. DNS collector testing
+3. WHOIS collector testing
+4. IP collector testing
+5. Combined OSINT collection
+6. AI analysis
+7. End-to-end investigation
+8. Technology evidence integration
+9. Database persistence
+10. Investigation retrieval
+11. Flask web interface
+12. Web investigation results
+13. Investigation history
+14. GitHub Actions CI validation
+
+These screenshots document the progression from individual collectors to an integrated investigation platform.
+
+---
+
+## 🔐 Security Considerations
+
+Security was incorporated into the project workflow rather than added only at the end.
+
+### API keys
+
+Sensitive credentials are stored in:
+
+```text
+.env
+```
+
+The `.env` file is excluded through `.gitignore`.
+
+Only placeholder variable names are included in:
+
+```text
+.env.example
+```
+
+### Secret validation
+
+Repository contents were checked before the initial public push to reduce the risk of accidentally committing API credentials.
+
+### Evidence integrity
+
+AI-generated statements are kept conceptually separate from collected OSINT evidence.
+
+### Collection scope
+
+The project focuses on publicly available and passive information rather than intrusive exploitation or unauthorized access.
 
 ---
 
@@ -451,84 +584,115 @@ Several safeguards are built into the development workflow:
 This project is intended for:
 
 - Cybersecurity education
-- Authorized security research
 - Defensive OSINT
-- Domains owned by the investigator
-- Systems the investigator has permission to assess
-- Appropriate passive public-source research
+- Authorized security research
+- Threat intelligence learning
+- Portfolio development
+- Investigation of systems or domains where the analyst has appropriate authorization
 
-Do not use this project to perform unauthorized access, intrusive scanning, exploitation, harassment, or other activity outside the permitted scope of an investigation.
+Users are responsible for ensuring that their investigations comply with applicable laws, policies, authorization requirements, and terms of service.
 
-Publicly available information should still be handled responsibly.
-
----
-
-## 🧠 Lessons Learned
-
-Building this project reinforced several important cybersecurity concepts.
-
-### Evidence and analysis are different
-
-Collected information represents evidence. AI-generated interpretations are analysis and require validation.
-
-### Attribution requires caution
-
-CDNs, proxies, shared infrastructure, and cloud services can make IP-based attribution unreliable.
-
-### Passive discoveries require verification
-
-Certificate Transparency data can reveal historical or current hostnames, but the presence of a hostname does not prove that the system remains active.
-
-### Missing controls require context
-
-A missing HTTP security header may warrant investigation, but its absence alone does not prove an exploitable vulnerability.
-
-### AI works best as an assistant
-
-AI can help organize evidence, identify relationships, and suggest investigative paths, but the analyst remains responsible for validating conclusions.
+The project is not intended for unauthorized access, exploitation, harassment, or intrusive surveillance.
 
 ---
 
-## 🚀 Future Improvements
+## 💡 Lessons Learned
 
-Potential future additions include:
+Building this project reinforced several important cybersecurity principles.
 
-- VirusTotal integration
-- Shodan integration
-- RDAP support
+### Collection is not analysis
+
+A DNS record, certificate entry, WHOIS value, or HTTP header is an observation. Its meaning depends on context.
+
+### Correlation increases value
+
+Individual OSINT artifacts become more useful when relationships between DNS, WHOIS, IP, subdomain, and web evidence are examined together.
+
+### AI requires evidence boundaries
+
+AI can help identify patterns and summarize complex information, but generated conclusions must remain distinguishable from observed evidence.
+
+### Validation matters
+
+A technically correct script can still produce misleading results if its input validation or domain-boundary logic is weak.
+
+### Documentation is part of the investigation
+
+Screenshots, structured evidence, reports, and saved investigations make technical work reproducible and reviewable.
+
+### Security includes development practices
+
+Secret management, version control, and automated validation are part of building security tooling responsibly.
+
+---
+
+## 🔮 Future Improvements
+
+Planned improvements include:
+
+- Automated unit and integration tests
+- Mocked AI/API tests
+- Additional collector error handling
+- Improved evidence normalization
+- Investigation export options
 - Additional passive intelligence sources
-- DNS history
-- Expanded certificate analysis
-- Investigation comparison
-- Evidence confidence scoring
-- Improved report customization
-- Additional dashboard visualizations
+- More detailed report customization
+- Search and filtering of investigation history
+- Improved input validation
+- Additional analytical correlation rules
+
+### Planned Test Suite
+
+A future `tests/` directory will validate behavior such as:
+
+```text
+tests/
+├── test_collectors.py
+├── test_database.py
+└── test_flask_routes.py
+```
+
+Examples include:
+
+- Database save and retrieval
+- Flask route response validation
+- Invalid investigation handling
+- Subdomain boundary validation
+- Collector error handling
+
+External AI calls should be mocked during automated testing to avoid exposing credentials or generating unnecessary API usage.
 
 ---
 
-## 🛠️ Technologies Used
+## 🎓 Portfolio Focus
 
-- Python
-- Flask
-- SQLite
-- OpenAI API
-- Requests
-- dnspython
-- python-whois
-- ReportLab
-- HTML
-- CSS
-- Git
-- GitHub
+This project demonstrates practical skills relevant to roles such as:
+
+- SOC Analyst
+- Cybersecurity Analyst
+- Digital Forensics / DFIR Analyst
+- Incident Response Analyst
+- Threat Intelligence Analyst
+- Security Automation Analyst
+
+The goal is not simply to demonstrate that Python scripts can retrieve information.
+
+The project demonstrates the broader investigative process:
+
+> **Collect evidence → organize it → analyze it → validate conclusions → preserve results → communicate findings.**
 
 ---
 
-## 📚 Portfolio Focus
+## 👤 Author
 
-This project demonstrates the ability to move beyond isolated cybersecurity exercises and build an integrated investigation workflow:
+**BecomingCyber**
 
-**Public Evidence → Structured Data → AI-Assisted Analysis → Analyst Validation → Persistent Case Data → Reporting**
+Cybersecurity • Digital Forensics • OSINT • Security Automation
 
-The goal is not to replace the investigator with AI.
+Built as part of an ongoing cybersecurity portfolio focused on developing practical skills and documenting proof of work.
 
-The goal is to demonstrate how automation and AI can support a disciplined, evidence-first investigative process.
+---
+
+## 📜 Disclaimer
+
+This project is provided for educational and authorized security-research purposes. Information generated by the application, including AI-assisted analysis, should be independently validated before being used to make security, investigative, or operational decisions.

@@ -1,6 +1,11 @@
 # 🔎 AI OSINT Investigator
 
-An evidence-first, AI-assisted open-source intelligence application that collects publicly available information about a domain, structures the evidence, uses AI to assist with analysis, stores investigation results, and generates investigation reports.
+[![Python CI](https://github.com/BecomingCyber/AI-OSINT-INVESTIGATOR/actions/workflows/python-ci.yml/badge.svg)](https://github.com/BecomingCyber/AI-OSINT-INVESTIGATOR/actions/workflows/python-ci.yml)
+
+An evidence-first, AI-assisted open-source intelligence application that
+collects publicly available information about a domain, structures the
+evidence, uses AI to assist with analysis, stores investigation results, and
+generates investigation reports.
 
 > **Workflow:** Collect → Structure → Analyze → Validate → Report
 

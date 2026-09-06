@@ -4,6 +4,10 @@ An evidence-first, AI-assisted open-source intelligence application that collect
 
 > **Workflow:** Collect → Structure → Analyze → Validate → Report
 
+## 🖥️ Application Preview
+
+![AI OSINT Investigator web investigation results](screenshots/12-web-investigation-results.png)
+
 ---
 
 ## 📌 Project Overview

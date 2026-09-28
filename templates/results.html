@@ -231,7 +231,7 @@
 
         {% if analysis.status == "success" %}
 
-        <pre class="analysis-output">{{ analysis.analysis }}</pre>
+        <div class="analysis-output">{{ analysis.analysis_html | safe }}</div>
 
         {% else %}
 

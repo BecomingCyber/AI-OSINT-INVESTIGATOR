@@ -11,7 +11,10 @@ from collectors.ip_collector import collect_ip_info
 from collectors.subdomain_collector import collect_subdomains
 from collectors.technology_collector import collect_technology_info
 
-from analyzer.ai_analyzer import analyze_osint
+from analyzer.ai_analyzer import (
+    analyze_osint,
+    render_analysis_markdown,
+)
 
 from database.database_manager import (
     initialize_database,
@@ -115,6 +118,9 @@ def view_investigation(investigation_id):
     analysis_result = {
         "status": investigation["status"],
         "analysis": investigation["ai_analysis"],
+        "analysis_html": render_analysis_markdown(
+            investigation["ai_analysis"]
+        ),
     }
 
     return render_template(

@@ -1,11 +1,51 @@
 import json
 import os
 
+import bleach
+import markdown
 from dotenv import load_dotenv
 from openai import OpenAI
 
 
 load_dotenv()
+
+ALLOWED_ANALYSIS_TAGS = [
+    "blockquote",
+    "br",
+    "code",
+    "em",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "hr",
+    "li",
+    "ol",
+    "p",
+    "pre",
+    "strong",
+    "ul",
+]
+
+
+def render_analysis_markdown(analysis):
+    """
+    Convert AI-generated Markdown to a sanitized HTML fragment.
+    """
+
+    rendered_analysis = markdown.markdown(
+        analysis or "",
+        extensions=["fenced_code", "sane_lists"],
+    )
+
+    return bleach.clean(
+        rendered_analysis,
+        tags=ALLOWED_ANALYSIS_TAGS,
+        attributes={},
+        strip=True,
+    )
 
 
 def build_analysis_prompt(osint_data):
@@ -70,7 +110,10 @@ def analyze_osint(osint_data):
         return {
             "status": "success",
             "target": osint_data.get("target"),
-            "analysis": response.output_text
+            "analysis": response.output_text,
+            "analysis_html": render_analysis_markdown(
+                response.output_text
+            ),
         }
 
     except Exception as error:

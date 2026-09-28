@@ -304,11 +304,50 @@ button:hover {
     color: #ffffff;
     border-radius: 8px;
 
-    white-space: pre-wrap;
     overflow-wrap: anywhere;
 
     font-family: Consolas, "Courier New", monospace;
     line-height: 1.6;
+}
+
+.analysis-output :first-child {
+    margin-top: 0;
+}
+
+.analysis-output :last-child {
+    margin-bottom: 0;
+}
+
+.analysis-output h1,
+.analysis-output h2,
+.analysis-output h3,
+.analysis-output h4,
+.analysis-output h5,
+.analysis-output h6 {
+    color: #ffffff;
+}
+
+.analysis-output ul,
+.analysis-output ol {
+    padding-left: 24px;
+}
+
+.analysis-output pre {
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.analysis-output code {
+    padding: 2px 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+}
+
+.analysis-output pre code {
+    padding: 0;
+    background: transparent;
 }
 
 

@@ -5,3 +5,5 @@ openai
 dnspython
 python-whois
 reportlab==5.0.1
+Markdown
+bleach
